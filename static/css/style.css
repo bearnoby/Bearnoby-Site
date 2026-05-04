@@ -161,8 +161,13 @@ body {
     text-decoration: none;
     font-size: 1.1rem;
     box-shadow: 0 6px 0 var(--dark-brown);
-    transition: all 0.1s ease;
+    transition: all 0.2s ease;
     text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 0 var(--dark-brown);
 }
 
 .btn:active {
