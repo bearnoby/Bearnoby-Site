@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bearnoby | Digital Creator</title>
+    <meta name="description" content="One-page profile for Bearnoby. Content creation and streaming tools.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/bear_model.png') }}">
+</head>
+
+<body>
+    <main class="carrd-card">
+        <!-- Left Side: Profile & Bio -->
+        <div class="profile-side">
+            <h1 class="name-header">BEARNOBY</h1>
+            <img src="{{ url_for('static', filename='img/bear_model.png') }}" alt="Bearnoby" class="bear-image">
+            <p class="bio">
+                Yes, I'm THAT bear.<br>
+                Content creator, vtuber, engineer.<br>
+                I make tools for streamers.
+            </p>
+        </div>
+
+        <!-- Right Side: Interaction -->
+        <div class="content-side">
+            <a href="https://ko-fi.com/bearnoby" class="card">
+                <h3>Support on Ko-fi</h3>
+                <p>If you like my content or tools, support me directly here!</p>
+            </a>
+
+            <div class="card">
+                <h3>Bearnoby-Tools</h3>
+                <p>Streaming tools are all either overcomplicated or too expensive. I'm trying to fix that.</p>
+                <span class="badge">COMING SOON</span>
+            </div>
+
+            <div class="links-grid">
+                <a href="https://twitch.tv/bearnoby" class="btn">Twitch</a>
+                <a href="https://x.com/bearnoby" class="btn">Twitter</a>
+                <a href="https://www.youtube.com/@bearnoby" class="btn">YouTube</a>
+                <a href="https://discord.gg/bNMjbB7C8e" class="btn">Discord</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Bearnoby | For business inquiries, contact via socials.</p>
+    </footer>
+</body>
+
+</html>
