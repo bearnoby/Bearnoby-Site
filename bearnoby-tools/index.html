@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bearnoby-Tools</title>
+    <meta name="description" content="Streaming tools are either overcomplicated or expensive. I'm trying to fix that.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://bearnoby.com/bearnoby-tools/">
+    <meta property="og:title" content="Bearnoby-Tools">
+    <meta property="og:description" content="Streaming tools are either overcomplicated or expensive. I'm trying to fix that.">
+    <meta property="og:image" content="http://bearnoby.com/static/img/bear_model.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="http://bearnoby.com/bearnoby-tools/">
+    <meta property="twitter:title" content="Bearnoby-Tools">
+    <meta property="twitter:description" content="Streaming tools are either overcomplicated or expensive. I'm trying to fix that.">
+    <meta property="twitter:image" content="http://bearnoby.com/static/img/bear_model.png">
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="icon" type="image/png" href="../static/img/bear_model.png">
+
+    <style>
+        body {
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ── Top bar ── */
+        .back-link {
+            display: block;
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-weight: 800;
+            font-size: 0.8rem;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+            margin-bottom: 0.3rem;
+        }
+
+        .back-link:hover { opacity: 1; }
+
+        .title-row {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .page-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-shadow:
+                -3px -3px 0 var(--deep-brown),
+                 3px -3px 0 var(--deep-brown),
+                -3px  3px 0 var(--deep-brown),
+                 3px  3px 0 var(--deep-brown),
+                 0px  6px 0 rgba(0,0,0,0.1);
+            line-height: 1;
+        }
+
+        /* ── Section titles ── */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-shadow:
+                -3px -3px 0 var(--deep-brown),
+                 3px -3px 0 var(--deep-brown),
+                -3px  3px 0 var(--deep-brown),
+                 3px  3px 0 var(--deep-brown);
+            margin: 2.5rem 0 1.25rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 1.25rem;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+        }
+
+        .hero-img-card {
+            background: var(--deep-brown);
+            border: 5px solid var(--dark-brown);
+            border-radius: 22px;
+            box-shadow: 0 8px 0 var(--dark-brown);
+            overflow: hidden;
+        }
+
+        .hero-img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Two boxes split the image height equally */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .hero-right .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-right .card:first-child {
+            flex: 0 0 auto;
+        }
+
+        .hero-right .card:last-child {
+            flex: 1;
+        }
+
+        /* ── Cards ── */
+        .card {
+            border: 5px solid var(--dark-brown);
+            border-radius: 22px;
+            padding: 1.5rem 1.75rem;
+            box-shadow: 0 8px 0 var(--dark-brown);
+        }
+
+        .card-yellow { background: var(--primary); }
+        .card-white  { background: white; }
+        .card-red    { background: var(--accent); text-align: center; }
+
+        .card p {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p:last-of-type { margin-bottom: 0; }
+
+        .card-yellow p { color: var(--dark-brown); }
+        .card-white  p { color: var(--dark-brown); }
+        .card-red    p { color: white; opacity: 0.95; }
+
+        .card-white h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--deep-brown);
+            margin-bottom: 0.75rem;
+        }
+
+        .card-white ol {
+            padding-left: 0;
+            list-style: none;
+            counter-reset: steps;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .card-white li {
+            counter-increment: steps;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--dark-brown);
+            font-weight: 700;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card-white li::before {
+            content: counter(steps);
+            flex-shrink: 0;
+            width: 1.55rem;
+            height: 1.55rem;
+            background: var(--primary);
+            border: 2.5px solid var(--dark-brown);
+            border-radius: 50%;
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--dark-brown);
+            line-height: 1.55rem;
+            text-align: center;
+        }
+
+        .card-red h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: -2px 2px 0 rgba(0,0,0,0.25);
+            margin-bottom: 0.6rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 0.65rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0.9rem;
+        }
+
+        .cta-buttons .btn {
+            background: white;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.85rem;
+        }
+
+        /* ── Feature rows ── */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .feature-row.flip {
+            grid-template-columns: 2fr 3fr;
+        }
+
+        .feature-row.flip .feature-img { order: 2; }
+        .feature-row.flip .feature-text { order: 1; }
+
+        @media (max-width: 750px) {
+            .feature-row,
+            .feature-row.flip { grid-template-columns: 1fr; }
+            .feature-row.flip .feature-img,
+            .feature-row.flip .feature-text { order: unset; }
+        }
+
+        .feature-img {
+            background: var(--deep-brown);
+            border: 5px solid var(--dark-brown);
+            border-radius: 18px;
+            box-shadow: 0 7px 0 var(--dark-brown);
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .feature-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .feature-text {
+            align-self: stretch;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-text .card {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-text .card p {
+            color: var(--dark-brown);
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.55;
+            margin: 0;
+        }
+
+        /* ── FAQ ── */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 0;
+        }
+
+        details.faq-item {
+            border: 5px solid var(--dark-brown);
+            border-radius: 20px;
+            box-shadow: 0 7px 0 var(--dark-brown);
+            overflow: hidden;
+            transition: box-shadow 0.15s;
+        }
+
+        details.faq-item[open] {
+            box-shadow: 0 7px 0 var(--dark-brown);
+        }
+
+        details.faq-item summary {
+            background: var(--primary);
+            padding: 1rem 1.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--deep-brown);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        details.faq-item summary::-webkit-details-marker { display: none; }
+
+        details.faq-item summary::after {
+            content: '▾';
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+            opacity: 0.6;
+        }
+
+        details.faq-item[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        details.faq-item summary:hover {
+            background: #f5c84a;
+        }
+
+        .faq-body {
+            background: white;
+            padding: 1.1rem 1.5rem;
+            border-top: 4px solid var(--dark-brown);
+        }
+
+        .faq-body p {
+            color: var(--dark-brown);
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.65;
+            margin-bottom: 0.65rem;
+        }
+
+        .faq-body p:last-child { margin-bottom: 0; }
+
+        .faq-body a {
+            color: var(--accent);
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .faq-body a:hover { text-decoration: underline; }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- Top bar -->
+        <a href="/" class="back-link">&#8592; bearnoby.com</a>
+        <div class="title-row">
+            <h1 class="page-title">BEARNOBY-TOOLS</h1>
+            <span class="badge">WORK IN PROGRESS</span>
+        </div>
+
+        <!-- Hero: image left, 3 text boxes right -->
+        <div class="hero">
+            <div class="hero-img-card">
+                <img src="img/1-features.png" alt="Bearnoby-Tools feature overview">
+            </div>
+
+            <div class="hero-right">
+                <div class="card card-yellow">
+                    <p>Navigating setting up OBS for a stream can be a nightmare, with frankensteined browser sources to avoid paywalls and multiple bloated desktop applications that can take ages to set up. I'm tired of it, so I ended up building my own app.</p>
+                </div>
+
+                <div class="card card-white">
+                    <h3>The Design Philosophy</h3>
+                    <p>I wish I could say there was some grand plan here, but realistically I just built shit as I or my friends needed it. If I was to sum up the design philosophy though, it's as follows:</p>
+                    <ol>
+                        <li>Build something that does the shit I actually use</li>
+                        <li>Make the UX simple enough a baby could use it</li>
+                        <li>Build tools FOR the people I know who stream</li>
+                        <li>Make everything run locally on your PC, so you're not connecting to like 12 different services</li>
+                        <li>Make it all free</li>
+                    </ol>
+                </div>
+
+                <div class="card card-red">
+                    <h2>Want to test drive it?</h2>
+                    <p>I plan to release in 2026 once I've replaced my entire stream ecosystem with it &mdash; but if you want to try features early, join my Discord and drop a message in <strong>#bearnoby-tools</strong>, or email me at <strong>bearnoby@gmail.com</strong>. If you like what I do, you can support development on Ko-fi.</p>
+                    <div class="cta-buttons">
+                        <a href="https://discord.gg/bNMjbB7C8e" class="btn">Discord</a>
+                        <a href="mailto:bearnoby@gmail.com" class="btn">Email Me</a>
+                        <a href="https://ko-fi.com/bearnoby" class="btn">Ko-fi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature screenshots -->
+        <h2 class="section-title">FEATURES</h2>
+
+        <div class="features-list">
+
+            <div class="feature-row">
+                <div class="feature-img"><img src="img/2-triggers.png" alt="Media triggers"></div>
+                <div class="feature-text"><div class="card card-yellow"><p>Set chat or redeem-based triggers for media</p></div></div>
+            </div>
+
+            <div class="feature-row flip">
+                <div class="feature-img"><img src="img/2a-triggerboard.png" alt="Triggerboard"></div>
+                <div class="feature-text"><div class="card card-white"><p>Optional Triggerboard to fire off media like a soundboard</p></div></div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-img"><img src="img/3-commands.png" alt="Text commands"></div>
+                <div class="feature-text"><div class="card card-yellow"><p>Set up basic text commands that respond on your account or a secondary bot account</p></div></div>
+            </div>
+
+            <div class="feature-row flip">
+                <div class="feature-img"><img src="img/4-timers.png" alt="Timers"></div>
+                <div class="feature-text"><div class="card card-white"><p>Timers for subathons, gameplay, etc with easily configurable chat, redeem, donation, sub, etc integration</p></div></div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-img"><img src="img/5-chatboxes-simple.png" alt="Simple chat display"></div>
+                <div class="feature-text"><div class="card card-yellow"><p>Easy clean chat display with custom styling</p></div></div>
+            </div>
+
+            <div class="feature-row flip">
+                <div class="feature-img"><img src="img/6-chatboxes-complex.png" alt="Advanced chat styling"></div>
+                <div class="feature-text"><div class="card card-white"><p>Extra chat box styling if you're feeling fancy</p></div></div>
+            </div>
+
+            <div class="feature-row">
+                <div class="feature-img"><img src="img/7-counters.png" alt="Counters"></div>
+                <div class="feature-text"><div class="card card-yellow"><p>Persistent configurable counters with custom styling</p></div></div>
+            </div>
+
+            <div class="feature-row flip">
+                <div class="feature-img"><img src="img/8-viewer-queue.png" alt="Viewer queue"></div>
+                <div class="feature-text"><div class="card card-white"><p>Simple joinable viewer queue integrated with chat</p></div></div>
+            </div>
+
+        </div>
+
+        <!-- FAQ -->
+        <h2 class="section-title">FAQ</h2>
+
+        <div class="faq-list">
+
+            <details class="faq-item">
+                <summary>Who are you?</summary>
+                <div class="faq-body">
+                    <p>I'm that fuck-ass bear at <a href="http://twitch.tv/bearnoby" target="_blank">twitch.tv/bearnoby</a></p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Why're you doing this?</summary>
+                <div class="faq-body">
+                    <p>Recently, when overhauling my stream, I realized how much of a pain in the ass the whole process is. I was relying on like, six or seven different tools and services just to keep things running.</p>
+                    <p>I had one site for redeems, another platform for alerts, two for different chat boxes, complex third-party software for command integration, and another service for shout-outs and break screens.</p>
+                    <p>It's just a mess &mdash; my setup isn't even that complicated and a lot of these features are standard for practically every streamer. Half the reason it ends up like this is because platforms love to paywall basic tools behind monthly subscriptions, forcing you to frankenstein together free tiers from six different sites just to get a functional stream running.</p>
+                    <p>On top of the bloat, trying to set up a simple easter egg like playing a specific sound or video when someone says a certain trigger phrase in chat was ridiculously complicated. I even ran into a situation where a super basic feature I wanted was actively paywalled and there was no other available alternative, which was absurd to me because it's like the easiest thing in the world to implement.</p>
+                    <p>I got sick of it and have the expertise to build this shit myself so I did.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>No, I mean why are you doing this to me?</summary>
+                <div class="faq-body">
+                    <p>What, making you set up OBS again? Trust me it'll probably be worth it, I'm a trustworthy bear.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>You're dodging the question</summary>
+                <div class="faq-body">
+                    <p>No I'm not. I have no idea what you're talking about, you must be crazy.</p>
+                </div>
+            </details>
+
+            <details class="faq-item">
+                <summary>You're gaslighting me</summary>
+                <div class="faq-body">
+                    <p>Gaslighting isn't a real word, you made that up.</p>
+                </div>
+            </details>
+
+        </div>
+
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Bearnoby | For business inquiries, contact via socials.</p>
+    </footer>
+</body>
+
+</html>
