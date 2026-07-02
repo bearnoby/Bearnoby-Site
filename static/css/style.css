@@ -4,6 +4,7 @@
     --bg-page: #fffdf5;
     --primary: #FCD16F;
     --accent: #C5695E;
+    --lavender: #B39DDB;
     --dark-brown: #4b2e05;
     --deep-brown: #2f1a02;
     --text-white: #ffffff;
@@ -133,7 +134,7 @@ body {
 
 .badge {
     display: inline-block;
-    background: var(--accent);
+    background: var(--lavender);
     color: white;
     font-size: 0.8rem;
     padding: 4px 14px;

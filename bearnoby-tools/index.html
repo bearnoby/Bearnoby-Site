@@ -206,6 +206,15 @@
             margin-bottom: 0.6rem;
         }
 
+        .btn-download {
+            display: block;
+            width: 100%;
+            background: white;
+            font-size: 1.3rem;
+            padding: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
         .cta-buttons {
             display: flex;
             gap: 0.65rem;
@@ -246,6 +255,16 @@
             .feature-row.flip { grid-template-columns: 1fr; }
             .feature-row.flip .feature-img,
             .feature-row.flip .feature-text { order: unset; }
+        }
+
+        .feature-more {
+            text-align: center;
+        }
+
+        .feature-more p {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 0;
         }
 
         .feature-img {
@@ -370,13 +389,13 @@
         <a href="/" class="back-link">&#8592; bearnoby.com</a>
         <div class="title-row">
             <h1 class="page-title">BEARNOBY-TOOLS</h1>
-            <span class="badge">WORK IN PROGRESS</span>
+            <span class="badge">OPEN BETA NOW AVAILABLE!</span>
         </div>
 
         <!-- Hero: image left, 3 text boxes right -->
         <div class="hero">
             <div class="hero-img-card">
-                <img src="img/1-features.png" alt="Bearnoby-Tools feature overview">
+                <img src="img/bearnoby-tools.png" alt="Bearnoby-Tools feature overview">
             </div>
 
             <div class="hero-right">
@@ -397,8 +416,9 @@
                 </div>
 
                 <div class="card card-red">
-                    <h2>Want to test drive it?</h2>
-                    <p>I plan to release in 2026 once I've replaced my entire stream ecosystem with it &mdash; but if you want to try features early, join my Discord and drop a message in <strong>#bearnoby-tools</strong>, or email me at <strong>bearnoby@gmail.com</strong>. If you like what I do, you can support development on Ko-fi.</p>
+                    <h2>Now Available!</h2>
+                    <a href="https://bearnoby.itch.io/bearnoby-tools" class="btn btn-download">Download on Itch.io</a>
+                    <p>If you like what I do, you can support development on Ko-fi.</p>
                     <div class="cta-buttons">
                         <a href="https://discord.gg/bNMjbB7C8e" class="btn">Discord</a>
                         <a href="mailto:bearnoby@gmail.com" class="btn">Email Me</a>
@@ -434,16 +454,6 @@
             </div>
 
             <div class="feature-row">
-                <div class="feature-img"><img src="img/5-chatboxes-simple.png" alt="Simple chat display"></div>
-                <div class="feature-text"><div class="card card-yellow"><p>Easy clean chat display with custom styling</p></div></div>
-            </div>
-
-            <div class="feature-row flip">
-                <div class="feature-img"><img src="img/6-chatboxes-complex.png" alt="Advanced chat styling"></div>
-                <div class="feature-text"><div class="card card-white"><p>Extra chat box styling if you're feeling fancy</p></div></div>
-            </div>
-
-            <div class="feature-row">
                 <div class="feature-img"><img src="img/7-counters.png" alt="Counters"></div>
                 <div class="feature-text"><div class="card card-yellow"><p>Persistent configurable counters with custom styling</p></div></div>
             </div>
@@ -451,6 +461,10 @@
             <div class="feature-row flip">
                 <div class="feature-img"><img src="img/8-viewer-queue.png" alt="Viewer queue"></div>
                 <div class="feature-text"><div class="card card-white"><p>Simple joinable viewer queue integrated with chat</p></div></div>
+            </div>
+
+            <div class="card card-yellow feature-more">
+                <p>And more!</p>
             </div>
 
         </div>
