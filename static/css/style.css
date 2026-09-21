@@ -176,6 +176,17 @@ body {
     box-shadow: none;
 }
 
+.btn-large {
+    grid-column: 1 / -1;
+    padding: 1.5rem;
+    font-size: 1.4rem;
+}
+
+.btn-lavender {
+    background: var(--lavender);
+    color: white;
+}
+
 /* Footer (Page Bottom) */
 footer {
     width: 100%;
