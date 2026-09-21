@@ -176,6 +176,10 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     {robots}
     <link rel="alternate" type="application/rss+xml" title="Bearnoby Blog" href="{rss_link}">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/blog.css">
     <link rel="icon" type="image/png" href="/static/img/bear_model.png">
@@ -183,21 +187,39 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
 <body class="blog-body">
     <header class="blog-header">
-        <a href="/" class="btn back-btn">&larr; Bearnoby</a>
-        <h1 class="blog-title">{heading}</h1>
-        <a href="/blog/rss.xml" class="btn rss-btn">RSS</a>
+        <div class="header-title">
+            <a href="/" class="back-link">&larr; bearnoby.com</a>
+            <h1 class="blog-title">{heading}</h1>
+        </div>
+        <div class="header-actions">
+            <a href="{rss_link}" class="btn rss-btn-header" title="Subscribe via RSS">RSS Feed</a>
+        </div>
     </header>
 
     {banner}
 
-    <div class="tag-filter-bar" id="tag-filter-bar">
-        <button class="tag-chip active" data-tag="">All</button>
-{all_tag_chips}
-    </div>
-
-    <main class="blog-feed" id="blog-feed">
+    <div class="blog-container">
+        <main class="blog-feed" id="blog-feed">
 {articles}
-    </main>
+        </main>
+
+        <aside class="blog-sidebar">
+            <div class="sidebar-card">
+                <h3 class="sidebar-card-title">Filter Tags</h3>
+                <div class="tag-filter-bar" id="tag-filter-bar">
+                    <button class="tag-chip active" data-tag="">All Tags</button>
+{all_tag_chips}
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <h3 class="sidebar-card-title">Posts</h3>
+                <ul class="sidebar-posts-list">
+{posts_list_items}
+                </ul>
+            </div>
+        </aside>
+    </div>
 
     <footer>
         <p>&copy; 2026 Bearnoby | For business inquiries, contact via socials.</p>
@@ -217,10 +239,19 @@ PREVIEW_BANNER = """<div class="preview-banner">
 def build_page(posts: list, section: str, out_dir: Path) -> None:
     all_tags = sorted({t for p in posts for t in p["tags"]}, key=str.lower)
     all_tag_chips = "\n".join(
-        f'        <button class="tag-chip" data-tag="{html.escape(t)}">#{html.escape(t)}</button>'
+        f'                    <button class="tag-chip" data-tag="{html.escape(t)}">#{html.escape(t)}</button>'
         for t in all_tags
     )
     articles = "\n".join(render_post_article(p, section) for p in posts)
+
+    posts_list_items = "\n".join(
+        f'                    <li class="sidebar-post-item">'
+        f'<a href="#{html.escape(p["permalink"])}">'
+        f'<span class="sidebar-post-title">{html.escape(p["title"])}</span>'
+        f'<span class="sidebar-post-date">{(p["date"].strftime("%B %-d, %Y") if sys.platform != "win32" else p["date"].strftime("%B %#d, %Y"))}</span>'
+        f'</a></li>'
+        for p in posts
+    )
 
     is_preview = section == "blog-preview"
     page = PAGE_TEMPLATE.format(
@@ -233,6 +264,7 @@ def build_page(posts: list, section: str, out_dir: Path) -> None:
         heading="BLOG PREVIEW" if is_preview else "BLOG",
         banner=PREVIEW_BANNER if is_preview else "",
         all_tag_chips=all_tag_chips,
+        posts_list_items=posts_list_items if posts_list_items else '<li><span class="sidebar-post-title">No posts</span></li>',
         articles=articles if articles else '<p class="empty-feed">No posts yet.</p>',
     )
 
@@ -273,6 +305,7 @@ def copy_static_site(out_dir: Path) -> None:
     shutil.copy2(ROOT / "index.html", out_dir / "index.html")
     shutil.copy2(ROOT / "CNAME", out_dir / "CNAME")
     shutil.copytree(ROOT / "static", out_dir / "static", dirs_exist_ok=True)
+    shutil.copytree(ROOT / "bearnoby-tools", out_dir / "bearnoby-tools", dirs_exist_ok=True)
 
 
 def main() -> None:
@@ -282,7 +315,8 @@ def main() -> None:
 
     out_dir = (ROOT / args.out).resolve()
     if out_dir.exists():
-        shutil.rmtree(out_dir)
+        shutil.rmtree(out_dir, ignore_errors=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     copy_static_site(out_dir)
 

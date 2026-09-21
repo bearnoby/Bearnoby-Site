@@ -5,7 +5,9 @@ permalink: its-a-blog
 description: Blog!
 tags: [meta]
 ---
-[This is me c:](chibi_bear_suit.png) Hi! I'm Bearnoby Bear Bearington III, but you can just call me Bear.
+![This is me c:](chibi_bear_suit.png)
+
+Hi! I'm Bearnoby Bear Bearington III, but you can just call me Bear.
 
 I'm fuckin' slack at keeping people up to date with my life so I'm starting this in hopes I can just drop an info-dumped update on my life whenever it feels like a good time for it. 
 
