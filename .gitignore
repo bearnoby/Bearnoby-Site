@@ -7,6 +7,7 @@ venv/
 ENV/
 build/
 dist/
+_site/
 *.bak
 *.swp
 .idea/

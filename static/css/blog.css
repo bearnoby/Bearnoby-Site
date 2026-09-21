@@ -1,0 +1,241 @@
+/* Blog & blog-preview pages: extends static/css/style.css's theme */
+
+.blog-body {
+    display: block;
+    padding: 0;
+    align-items: initial;
+    justify-content: initial;
+}
+
+.blog-header {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.blog-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-white);
+    text-shadow:
+        -3px -3px 0 var(--deep-brown),
+         3px -3px 0 var(--deep-brown),
+        -3px  3px 0 var(--deep-brown),
+         3px  3px 0 var(--deep-brown);
+    letter-spacing: 1px;
+}
+
+.back-btn,
+.rss-btn {
+    padding: 0.6rem 1.1rem;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 0 var(--dark-brown);
+}
+
+.back-btn:active,
+.rss-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.preview-banner {
+    max-width: 780px;
+    margin: 0 auto 1.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--lavender);
+    color: white;
+    font-weight: 700;
+    border: 4px solid var(--dark-brown);
+    border-radius: 18px;
+}
+
+.tag-filter-bar {
+    max-width: 780px;
+    margin: 0 auto 2rem;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.tag-chip {
+    font: inherit;
+    cursor: pointer;
+    background: white;
+    border: 3px solid var(--dark-brown);
+    border-radius: 12px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--deep-brown);
+    transition: all 0.15s ease;
+}
+
+.tag-chip:hover {
+    transform: translateY(-2px);
+}
+
+.tag-chip.active {
+    background: var(--lavender);
+    color: white;
+}
+
+.blog-feed {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.post-card {
+    background: var(--primary);
+    border: 5px solid var(--dark-brown);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 8px 0 var(--dark-brown);
+    scroll-margin-top: 2rem;
+}
+
+.post-card:target {
+    outline: 4px dashed var(--accent);
+    outline-offset: 6px;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark-brown);
+    opacity: 0.75;
+    margin-bottom: 0.4rem;
+}
+
+.post-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.post-title a {
+    color: var(--deep-brown);
+    text-decoration: none;
+}
+
+.post-body {
+    color: var(--dark-brown);
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+.post-body p {
+    margin-bottom: 1rem;
+}
+
+.post-body img {
+    max-width: 100%;
+    border-radius: 16px;
+    border: 4px solid var(--dark-brown);
+    margin: 1rem 0;
+}
+
+.post-body h1,
+.post-body h2,
+.post-body h3 {
+    margin: 1.2rem 0 0.6rem;
+    color: var(--deep-brown);
+}
+
+.post-body a {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.post-body blockquote {
+    border-left: 4px solid var(--dark-brown);
+    padding-left: 1rem;
+    opacity: 0.85;
+    margin: 1rem 0;
+}
+
+.post-body pre {
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.post-body code {
+    font-family: 'Courier New', monospace;
+}
+
+.post-body del {
+    opacity: 0.6;
+}
+
+.post-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 3px solid var(--dark-brown);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.share-btn {
+    font: inherit;
+    cursor: pointer;
+    background: white;
+    border: 3px solid var(--dark-brown);
+    border-radius: 14px;
+    padding: 0.5rem 1.1rem;
+    font-weight: 800;
+    color: var(--deep-brown);
+    box-shadow: 0 4px 0 var(--dark-brown);
+    transition: all 0.15s ease;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+}
+
+.share-btn:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.share-btn.copied {
+    background: var(--lavender);
+    color: white;
+}
+
+.empty-feed {
+    text-align: center;
+    font-weight: 600;
+    opacity: 0.7;
+    padding: 3rem 0;
+}
+
+.post-card.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .blog-header {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+}
