@@ -8,7 +8,7 @@
 
 page:
   title: Bearnoby Tools
-  description: Streaming tools are either overcomplicated or expensive. I'm trying to fix that.
+  description: A lightweight all-in-one local-first toolkit for streamers
   badges: []               # optional pills next to the title, e.g. - { text: BETA, style: default }
 
 # The lavender announcement under the page title. Set enabled: false to hide it.
