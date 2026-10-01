@@ -1,0 +1,199 @@
+# All text for the Bearnoby Tools page lives here. Edit this file, then run
+# .\run.ps1 (or push to main) and the page is rebuilt from it.
+#
+# - Text may contain basic HTML (<a href="...">, <b>, <br>). Write &amp; for a literal &.
+# - Image paths are relative to the bearnoby-tools/ folder (e.g. img/2-triggers.png).
+# - Order in each list is the order on the page.
+# - Anything marked TODO is placeholder copy that still needs real content.
+
+page:
+  title: Bearnoby Tools
+  description: Streaming tools are either overcomplicated or expensive. I'm trying to fix that.
+  badges: []               # optional pills next to the title, e.g. - { text: BETA, style: default }
+
+# The lavender announcement under the page title. Set enabled: false to hide it.
+announcement:
+  enabled: true
+  addon: tts-pets          # id of an entry under premium.addons; the announcement links to it
+  pill: "SOON"                 # small red tag before the text, e.g. NEW. Empty string hides it.
+  text: TTS Pets is coming soon!   # the announcement itself (basic HTML allowed)
+
+overview:
+  hero_image: img/bearnoby-tools.png
+  hero_alt: Bearnoby Tools feature overview
+  intro: >-
+    Navigating OBS setup can be an exhausting mess of different websites and applications.
+    I built Bearnoby Tools to change that.
+  download:
+    heading: Now Available!
+    button: { text: Download for Free on Itch.io, url: "https://bearnoby.itch.io/bearnoby-tools" }
+    support_text: If you like what I do, you can also support development on Ko-fi.
+    links:
+      - { text: Discord, url: "https://discord.gg/bNMjbB7C8e" }
+      - { text: Email Me, url: "mailto:bearnoby@gmail.com" }
+      - { text: Ko-fi, url: "https://ko-fi.com/bearnoby" }
+
+# Sidebar groups for the free features. Each feature's `group` must match a group id.
+feature_groups:
+  - { id: chat, name: Chat }
+  - { id: alerts, name: Alerts }
+  - { id: triggers, name: Triggers }
+  - { id: chat-commands, name: Commands }
+  - { id: timers-counters, name: Timers &amp; counters }
+  - { id: feature-management, name: Feature Management}
+
+features:
+  - id: chat-simplechat
+    group: chat
+    title: Simple chat boxes
+    image: img/chat-simplechat.png
+    text: "A basic no-frills chatbox."
+
+  - id: chat-advancedchat
+    group: chat
+    title: Advanced chat boxes
+    image: img/chat-advancedchat.png
+    text: "Advanced custom chatbox creation."
+
+  - id: chat-customcode
+    group: chat
+    title: Custom code skin chat boxes
+    image: img/chat-customcode.png
+    text: "Full custom code chatboxes with placeholder templating and configurable parameters."
+
+  - id: chat-filtering
+    group: chat
+    title: Message filtering
+    image: img/chat-filtering.png
+    text: "Filter out certain messages or users"
+
+  - id: chatbox-7tv
+    group: chat
+    title: Native 7TV integration
+    image: img/chat-7tv.png
+    text: "Set up your 7TV emotes and they can be natively imported and used in BearnobyTools."
+
+  - id: alerts-simple
+    group: alerts
+    title: Alerts
+    image: img/alerts-simple.png
+    text: "Simple Twitch alert creation with image/video, audio and font choices."
+
+  - id: alerts-advanced
+    group: alerts
+    title: Advanced Alerts
+    image: img/alerts-advanced.png
+    text: "Play complex layered media configurations when Twitch events happen."
+
+# Start audit required section
+
+  - id: triggers
+    group: triggers
+    title: Media triggers
+    image: img/2-triggers.png
+    text: Set chat or redeem-based triggers for media
+
+  - id: triggerboard
+    group: triggers
+    title: Triggerboard
+    image: img/2a-triggerboard.png
+    text: Optional Triggerboard to fire off media like a soundboard
+
+  - id: commands
+    group: chat-commands
+    title: Text commands
+    image: img/3-commands.png
+    text: Set up basic text commands that respond on your account or a secondary bot account
+
+  - id: queue
+    group: chat-commands
+    title: Viewer queue
+    image: img/8-viewer-queue.png
+    text: Simple joinable viewer queue integrated with chat
+
+  - id: timers
+    group: timers-counters
+    title: Timers
+    image: img/4-timers.png
+    text: Timers for subathons, gameplay, etc with easily configurable chat, redeem, donation, sub, etc integration
+
+  - id: counters
+    group: timers-counters
+    title: Counters
+    image: img/7-counters.png
+    text: Persistent configurable counters with custom styling
+
+# End Audit required section
+
+  - id: feature-toggles
+    group: feature-management
+    title: Feature Toggles
+    image: img/feature-control.png
+    text: >-
+      Keep the UX as clean and minimal as possible by enabling only what you actually use. 
+      The rest remain hidden.
+
+features_footer: And more!
+
+premium:
+  heading: Premium Add-ons
+  coming_soon: ""   # dashed box under the add-ons; empty string hides it
+  addons:
+    - id: tts-pets
+      name: TTS Pets
+      short_name: TTS Pets      # used in the pill and sidebar
+      status: coming-soon        # available or coming-soon. coming-soon hides the badge and price and shows a disabled
+                                # "Coming Soon" button
+      # badge: ...              # optional; overrides the badge text (default "NOW AVAILABLE"; hidden when coming-soon)
+      price: "$12 USD"
+      price_note: one-time purchase
+      pitch: "Bring your chatters text-to-speech messages to life!"
+      bullets:
+        - "Build and import custom pets that speak your TTS messages"
+        - "Integration with multiple TTS providers, including ElevenLabs and Fish Audio"
+        - "Switch pets at will and provide multiple voices within a single TTS Redeem"
+        - "Fully exportable website to help your viewers construct complex chat messages"
+      art: ../static/img/bear_model.png   # TODO: swap for real TTS Pets art
+      art_alt: TTS Pets
+      screenshots: []           # e.g. [{ image: img/pets-1.png, alt: "Pets on stream" }]
+      page_url: ""             # TODO: TTS Pets sub-page; empty string hides the "See ..." button
+      buy_url: ""   # TODO: itch.io page for the add-on
+
+about:
+  philosophy_heading: Design Philosophy
+  philosophy_intro: >-
+    I wish I could say there was some grand plan here, but realistically I just build shit
+    as I or my friends needed or request it. If I was to sum up the design philosophy though, 
+    it's as follows:
+  philosophy_points:
+    - I build features as I (or others) need it
+    - Make the basics so simple a baby could use it, and gate complexity in extras
+    - As much as possible should run locally on your PC rather than relying on third party websites
+    - Anything "staple" to running a stream is free out of the box, forever
+
+faq:
+  - q: Who are you?
+    a:
+      - I'm that fuck-ass bear at <a href="http://twitch.tv/bearnoby" target="_blank">twitch.tv/bearnoby</a>
+
+  - q: Why're you doing this?
+    a:
+      - Recently, when overhauling my stream, I realized how much of a pain in the ass the whole process is. I was relying on like, six or seven different tools and services just to keep things running.
+      - I had one site for redeems, another platform for alerts, two for different chat boxes, complex third-party software for command integration, and another service for shout-outs and break screens.
+      - It's just a mess &mdash; my setup isn't even that complicated and a lot of these features are standard for practically every streamer. Half the reason it ends up like this is because platforms love to paywall basic tools behind monthly subscriptions, forcing you to frankenstein together free tiers from six different sites just to get a functional stream running.
+      - On top of the bloat, trying to set up a simple easter egg like playing a specific sound or video when someone says a certain trigger phrase in chat was ridiculously complicated. I even ran into a situation where a super basic feature I wanted was actively paywalled and there was no other available alternative, which was absurd to me because it's like the easiest thing in the world to implement.
+      - I got sick of it and have the expertise to build this shit myself so I did.
+
+  - q: No, I mean why are you doing this to me?
+    a:
+      - What, making you set up OBS again? Trust me it'll probably be worth it, I'm a trustworthy bear.
+
+  - q: You're dodging the question
+    a:
+      - No I'm not. I have no idea what you're talking about, you must be crazy.
+
+  - q: You're gaslighting me
+    a:
+      - Gaslighting isn't a real word, you made that up.
+
+footer: "&copy; 2026 Bearnoby | For business inquiries, contact via socials."

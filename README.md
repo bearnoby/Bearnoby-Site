@@ -27,3 +27,6 @@ The project is hosted on **GitHub Pages**. To update the live site:
 - `static/`: Contains CSS styling and images.
 - `run.ps1`: Simple local preview script.
 - `templates/` & `app.py`: Legacy Flask files (not used by GitHub Pages).
+- `bearnoby-tools/content.yaml`: All text for the Bearnoby Tools page (features, premium add-ons, FAQ, links). Edit this, not the HTML.
+- `bearnoby-tools/tools.css` & `tools.js`: Styles and small scripts for that page.
+- `scripts/build_tools_page.py`: Generates `bearnoby-tools/index.html` from `content.yaml` during `scripts/build.py`.
