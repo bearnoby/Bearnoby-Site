@@ -20,6 +20,7 @@ from xml.sax.saxutils import escape as xml_escape
 
 import markdown
 import yaml
+from build_tools_page import build_tools_page
 from markdown.extensions import Extension
 from markdown.inlinepatterns import SimpleTagInlineProcessor
 
@@ -305,7 +306,13 @@ def copy_static_site(out_dir: Path) -> None:
     shutil.copy2(ROOT / "index.html", out_dir / "index.html")
     shutil.copy2(ROOT / "CNAME", out_dir / "CNAME")
     shutil.copytree(ROOT / "static", out_dir / "static", dirs_exist_ok=True)
-    shutil.copytree(ROOT / "bearnoby-tools", out_dir / "bearnoby-tools", dirs_exist_ok=True)
+    shutil.copytree(
+        ROOT / "bearnoby-tools",
+        out_dir / "bearnoby-tools",
+        dirs_exist_ok=True,
+        ignore=shutil.ignore_patterns("content.yaml"),
+    )
+    build_tools_page(out_dir)
 
 
 def main() -> None:
